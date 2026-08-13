@@ -26,7 +26,7 @@
           <!-- Render Actual Shopify Products -->
           {%- for product in selected_collection.products limit: section.settings.limit -%}
             
-            {%- comment -%} Extract Badge from tags {-% endcomment -%}
+            {% comment %} Extract Badge from tags {% endcomment %}
             {%- assign badge = "" -%}
             {%- for tag in product.tags -%}
               {%- if tag contains 'badge__' -%}
@@ -43,7 +43,7 @@
               {%- endif -%}
             {%- endif -%}
 
-            {%- comment -%} Review Ratings fallbacks {-% endcomment -%}
+            {% comment %} Review Ratings fallbacks {% endcomment %}
             {%- assign rating = product.metafields.reviews.rating.value.rating | default: "4.8" -%}
             {%- assign reviews_count = product.metafields.reviews.rating_count | default: 231 -%}
 
@@ -56,7 +56,7 @@
                 {%- if product.featured_image != blank -%}
                   <img class="pimg-real" src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}" loading="lazy">
                 {%- else -%}
-                  {%- comment -%} Handle dynamic vector illustrations if no photo {-% endcomment -%}
+                  {% comment %} Handle dynamic vector illustrations if no photo {% endcomment %}
                   {%- assign p_handle = product.handle | downcase -%}
                   {%- if p_handle contains "tap" -%}
                     {%- render 'purelane-product-vector', type: 'tap', detailed: true -%}

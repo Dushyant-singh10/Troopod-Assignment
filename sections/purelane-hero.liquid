@@ -115,7 +115,7 @@
                 
                 <!-- Price tag info flag -->
                 <div class="glass-2 ptag">
-                  {%- comment -%} Determine label, price, and compare price {-% endcomment -%}
+                  {% comment %} Determine label, price, and compare price {% endcomment %}
                   {%- assign label = block.settings.custom_label -%}
                   {%- if label == blank -%}
                     {%- if p1 != blank -%}
@@ -206,7 +206,7 @@
   "class": "section",
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "textarea",
       "id": "headline",
       "label": "Headline",
       "default": "Clean<br>That<br><span class=\"lime\">Lasts</span>"
@@ -252,7 +252,7 @@
           "label": "SVG Icon HTML"
         },
         {
-          "type": "inline_richtext",
+          "type": "textarea",
           "id": "text",
           "label": "Badge Label"
         }
