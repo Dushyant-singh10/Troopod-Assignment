@@ -54,37 +54,18 @@
         "btn2_link": "#how"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "purelane_shop_grid": {
+      "type": "purelane-shop-grid",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "kicker": "Bestsellers",
+        "headline": "Loved by 30,000 homes",
+        "limit": 8,
+        "cart_btn_text": "Add to cart"
       }
     }
   },
   "order": [
     "purelane_hero",
-    "featured_collection"
+    "purelane_shop_grid"
   ]
 }

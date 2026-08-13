@@ -1,0 +1,233 @@
+{{ 'section-purelane-shop-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="purelane-section purelane-shop-grid-section" id="shop" data-scene="3">
+  <section class="sec">
+    <div class="wrap">
+      
+      <!-- Panel Header -->
+      <div class="panel-head rv">
+        <span class="kicker">{{ section.settings.kicker }}</span>
+        <h2 class="d2" style="margin-top:12px">{{ section.settings.headline }}</h2>
+        <div class="rule">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+            <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+          </svg>
+          <i></i>
+        </div>
+      </div>
+
+      <!-- Shelf Grid -->
+      <div class="shelf">
+        {%- assign selected_collection = collections[section.settings.collection] -%}
+        
+        {%- if selected_collection != blank and selected_collection.products_count > 0 -%}
+          <!-- Render Actual Shopify Products -->
+          {%- for product in selected_collection.products limit: section.settings.limit -%}
+            
+            {%- comment -%} Extract Badge from tags {-% endcomment -%}
+            {%- assign badge = "" -%}
+            {%- for tag in product.tags -%}
+              {%- if tag contains 'badge__' -%}
+                {%- assign badge = tag | split: '__' | last -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if badge == blank -%}
+              {%- if forloop.index == 1 or forloop.index == 2 or forloop.index == 5 or forloop.index == 6 -%}
+                {%- assign badge = "Best seller" -%}
+              {%- elsif forloop.index == 3 or forloop.index == 7 -%}
+                {%- assign badge = "Top rated" -%}
+              {%- else -%}
+                {%- assign badge = "New" -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- comment -%} Review Ratings fallbacks {-% endcomment -%}
+            {%- assign rating = product.metafields.reviews.rating.value.rating | default: "4.8" -%}
+            {%- assign reviews_count = product.metafields.reviews.rating_count | default: 231 -%}
+
+            <article class="glass card rv{% if forloop.index > 1 %} rv-d{{ forloop.index0 | min: 4 }}{% endif %}">
+              <div class="shot">
+                {%- if badge != blank -%}
+                  <span class="pill">{{ badge }}</span>
+                {%- endif -%}
+                
+                {%- if product.featured_image != blank -%}
+                  <img class="pimg-real" src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}" loading="lazy">
+                {%- else -%}
+                  {%- comment -%} Handle dynamic vector illustrations if no photo {-% endcomment -%}
+                  {%- assign p_handle = product.handle | downcase -%}
+                  {%- if p_handle contains "tap" -%}
+                    {%- render 'purelane-product-vector', type: 'tap', detailed: true -%}
+                  {%- elsif p_handle contains "kitchen" -%}
+                    {%- render 'purelane-product-vector', type: 'kitchen', detailed: true -%}
+                  {%- elsif p_handle contains "metal" or p_handle contains "copper" or p_handle contains "brass" -%}
+                    {%- render 'purelane-product-vector', type: 'metal', detailed: true -%}
+                  {%- elsif p_handle contains "washing" or p_handle contains "descaler" -%}
+                    {%- render 'purelane-product-vector', type: 'wm', detailed: true -%}
+                  {%- elsif p_handle contains "floor" -%}
+                    {%- render 'purelane-product-vector', type: 'floor', detailed: false -%}
+                  {%- elsif p_handle contains "hand" or p_handle contains "wash" -%}
+                    {%- render 'purelane-product-vector', type: 'handwash', detailed: false -%}
+                  {%- elsif p_handle contains "laundry" -%}
+                    {%- render 'purelane-product-vector', type: 'laundry', detailed: false -%}
+                  {%- else -%}
+                    {%- render 'purelane-product-vector', type: 'kitchen', detailed: true -%}
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+
+              <h4>{{ product.title }}</h4>
+              <div class="rate"><b>★ {{ rating }}</b> · {{ reviews_count }} reviews</div>
+              
+              <div class="pr">
+                <strong>{{ product.price | money }}</strong>
+                {%- if product.compare_at_price > product.price -%}
+                  <s>{{ product.compare_at_price | money }}</s>
+                  {%- assign save_amount = product.compare_at_price | minus: product.price -%}
+                  {%- assign percent = save_amount | times: 100 | divided_by: product.compare_at_price -%}
+                  <em>{{ percent }}% off</em>
+                {%- endif -%}
+              </div>
+
+              {%- form 'product', product, class: 'product-form' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="btn btn-ghost btn-sm" {% unless product.available %}disabled{% endunless %}>
+                  {%- if product.available -%}
+                    {{ section.settings.cart_btn_text }}
+                  {%- else -%}
+                    Sold out
+                  {%- endif -%}
+                </button>
+              {%- endform -%}
+            </article>
+
+          {%- endfor -%}
+
+        {%- else -%}
+          <!-- Render 8 Default Mock Fallback Cards -->
+          <!-- Card 1 -->
+          <article class="glass card rv">
+            <div class="shot"><span class="pill">Best seller</span>{% render 'purelane-product-vector', type: 'tap', detailed: false %}</div>
+            <h4>Tap cleaner &amp; limescale remover</h4>
+            <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+          
+          <!-- Card 2 -->
+          <article class="glass card rv rv-d1">
+            <div class="shot"><span class="pill">Best seller</span>{% render 'purelane-product-vector', type: 'kitchen', detailed: false %}</div>
+            <h4>Kitchen cleaner, foaming</h4>
+            <div class="rate"><b>★ 4.8</b> · 254 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="glass card rv rv-d2">
+            <div class="shot"><span class="pill">Top rated</span>{% render 'purelane-product-vector', type: 'metal', detailed: false %}</div>
+            <h4>Copper, bronze &amp; brass cleaner</h4>
+            <div class="rate"><b>★ 4.8</b> · 231 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="glass card rv rv-d3">
+            <div class="shot"><span class="pill">New</span>{% render 'purelane-product-vector', type: 'wm', detailed: false %}</div>
+            <h4>Washing machine cleaner &amp; descaler</h4>
+            <div class="rate"><b>★ 4.8</b> · 183 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="glass card rv">
+            <div class="shot"><span class="pill">Best seller</span>{% render 'purelane-product-vector', type: 'tap', detailed: true %}</div>
+            <h4>Tap cleaner &amp; limescale remover</h4>
+            <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="glass card rv rv-d1">
+            <div class="shot"><span class="pill">Best seller</span>{% render 'purelane-product-vector', type: 'kitchen', detailed: true %}</div>
+            <h4>Kitchen cleaner, foaming</h4>
+            <div class="rate"><b>★ 4.8</b> · 254 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+
+          <!-- Card 7 -->
+          <article class="glass card rv rv-d2">
+            <div class="shot"><span class="pill">Top rated</span>{% render 'purelane-product-vector', type: 'metal', detailed: true %}</div>
+            <h4>Copper, bronze &amp; brass cleaner</h4>
+            <div class="rate"><b>★ 4.8</b> · 231 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+
+          <!-- Card 8 -->
+          <article class="glass card rv rv-d3">
+            <div class="shot"><span class="pill">New</span>{% render 'purelane-product-vector', type: 'wm', detailed: true %}</div>
+            <h4>Washing machine cleaner &amp; descaler</h4>
+            <div class="rate"><b>★ 4.8</b> · 183 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <button class="btn btn-ghost btn-sm" type="button">{{ section.settings.cart_btn_text }}</button>
+          </article>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Bestsellers",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Loved by 30,000 homes"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Product Limit",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "cart_btn_text",
+      "label": "Button Text",
+      "default": "Add to cart"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Bestsellers"
+    }
+  ]
+}
+{% endschema %}
