@@ -1,0 +1,196 @@
+{{ 'section-purelane-reviews.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #reviews-{{ section.id }} {
+    --marquee-duration: {{ section.settings.speed }}s;
+  }
+</style>
+
+<div class="purelane-section purelane-reviews-section revband" id="reviews-{{ section.id }}" data-scene="1">
+  <div class="wrap">
+    
+    <!-- Aggregate Reviews Header Banner -->
+    <div class="revhead rv">
+      <span class="kicker">{{ section.settings.kicker }}</span>
+      <span class="agg">
+        <span class="st">{{ section.settings.stars }}</span> 
+        <b>{{ section.settings.rating_score }}</b> 
+        {{ section.settings.rating_label }}
+      </span>
+      <span class="agg">
+        Loved by <b>{{ section.settings.loved_count }}</b> homes
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Marquee Sliding track -->
+  <div class="revrail rv" aria-label="Customer reviews track">
+    <div class="revtrack">
+      {%- comment -%} Loop twice to enable infinite seamless marquee wrap {-% endcomment -%}
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            
+            <article class="glass-2 rcard" {{ block.shopify_attributes }}>
+              <div class="st">{{ block.settings.stars }}</div>
+              <h5>{{ block.settings.title }}</h5>
+              <p>{{ block.settings.text }}</p>
+              
+              <div class="who">
+                <!-- Verified Checkmark SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m5 13 4 4L19 7"/>
+                </svg>
+                <b>{{ block.settings.author }}</b>
+                {%- if block.settings.product_info != blank -%}
+                  <span>&middot; {{ block.settings.product_info }}</span>
+                {%- endif -%}
+              </div>
+            </article>
+
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Reviews Marquee",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "That's what they said"
+    },
+    {
+      "type": "text",
+      "id": "stars",
+      "label": "Aggregate Stars String",
+      "default": "★★★★★"
+    },
+    {
+      "type": "text",
+      "id": "rating_score",
+      "label": "Aggregate Rating Score",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "rating_label",
+      "label": "Aggregate Rating Label",
+      "default": "from 8,000+ reviews"
+    },
+    {
+      "type": "text",
+      "id": "loved_count",
+      "label": "Loved Homes Count",
+      "default": "12 lakh+"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Marquee Speed (Seconds)",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stars",
+          "label": "Review Stars",
+          "default": "★★★★★"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review Title",
+          "default": "Works like a charm"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Review Content",
+          "default": "Finally an eco option that cleans as well as the chemical detergent I used for years."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer Name",
+          "default": "Anita"
+        },
+        {
+          "type": "text",
+          "id": "product_info",
+          "label": "Product Purchased",
+          "default": "Laundry detergent"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Reviews Marquee",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "author": "Anita",
+            "product_info": "Laundry detergent",
+            "title": "Works like a charm",
+            "text": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Priya",
+            "product_info": "Dishwash gel",
+            "title": "Best dishwash ever",
+            "text": "Tough on grease, but very gentle on hands. Doesn't leave dry hands at all. Will buy again."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Sunita",
+            "product_info": "Liquid handwash",
+            "title": "Great packaging & product",
+            "text": "Beautiful minimal bottle. The handwash feels hydrating and does not dry the skin like commercial ones."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Rohit S.",
+            "product_info": "Floor cleaner",
+            "title": "Dog friendly",
+            "text": "Really happy with the floor cleaner. Pet friendly, nice smell and natural. Very safe for children and pets."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "author": "Verified buyer",
+            "product_info": "Tap cleaner",
+            "title": "Sparkling taps again",
+            "text": "Removed long-standing limescale on my taps in just one spray and wipe. Incredible results."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
