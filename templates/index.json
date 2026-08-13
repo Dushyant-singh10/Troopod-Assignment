@@ -128,11 +128,75 @@
         "combo_2",
         "combo_3"
       ]
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "blocks": {
+        "tier_1": {
+          "type": "tier",
+          "settings": {
+            "tag": "Starter",
+            "qty": "2",
+            "qty_label": "Products",
+            "price": "₹349",
+            "compare_price": "₹598",
+            "subtext": "Flat ₹174 per product",
+            "bullet_1": "Pick any two products",
+            "bullet_2": "Free shipping across India",
+            "is_best": false,
+            "img_1": "combo2"
+          }
+        },
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "tag": "Most popular",
+            "qty": "3",
+            "qty_label": "Products",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "subtext": "Flat ₹166 per product",
+            "bullet_1": "Pick any three products",
+            "bullet_2": "Covers kitchen and laundry",
+            "bullet_3": "Free shipping across India",
+            "is_best": true,
+            "img_1": "kitchen",
+            "img_2": "tap",
+            "img_3": "combo2"
+          }
+        },
+        "tier_3": {
+          "type": "tier",
+          "settings": {
+            "tag": "Whole home",
+            "qty": "5",
+            "qty_label": "Products",
+            "price": "₹799",
+            "compare_price": "₹1,495",
+            "subtext": "Flat ₹160 per product",
+            "bullet_1": "Pick any five products",
+            "bullet_2": "Every room in one order",
+            "bullet_3": "Free shipping across India",
+            "is_best": false,
+            "img_1": "kitchen",
+            "img_2": "tap",
+            "img_3": "floor",
+            "img_4": "toilet",
+            "img_5": "laundry"
+          }
+        }
+      },
+      "block_order": [
+        "tier_1",
+        "tier_2",
+        "tier_3"
+      ]
     }
   },
   "order": [
     "purelane_hero",
     "purelane_shop_grid",
-    "purelane_combos"
+    "purelane_combos",
+    "purelane_bundles"
   ]
 }

@@ -1,0 +1,385 @@
+{{ 'section-purelane-bundles.css' | asset_url | stylesheet_tag }}
+
+<div class="purelane-section purelane-bundles-section" id="bundles" data-scene="3">
+  <section class="sec">
+    <div class="wrap">
+      
+      <!-- Top Frost Panel Header -->
+      <div class="glass sec-pad rv" style="margin-bottom:16px">
+        <div class="panel-head" style="margin-bottom:0">
+          <span class="kicker">{{ section.settings.kicker }}</span>
+          <h2 class="d2" style="margin-top:12px">{{ section.settings.headline }}</h2>
+          {%- if section.settings.description != blank -%}
+            <p class="lede" style="margin:0 auto">{{ section.settings.description }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Tiers Grid -->
+      <div class="tiers">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tier' -%}
+            
+            {%- assign pix_count = 0 -%}
+            {%- if block.settings.img_1 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
+            {%- if block.settings.img_2 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
+            {%- if block.settings.img_3 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
+            {%- if block.settings.img_4 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
+            {%- if block.settings.img_5 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
+
+            <article class="glass tier rv{% if block.settings.is_best %} best{% endif %}{% if forloop.index > 1 %} rv-d{{ forloop.index0 | min: 4 }}{% endif %}" {{ block.shopify_attributes }}>
+              
+              {%- if block.settings.tag != blank -%}
+                <span class="tag">{{ block.settings.tag }}</span>
+              {%- endif -%}
+
+              <!-- Tier Product Row Illustrations -->
+              <div class="tierpix{% if pix_count >= 5 %} five{% endif %}" aria-hidden="true">
+                {%- if block.settings.img_1 != 'none' -%}{% render 'purelane-product-vector', type: block.settings.img_1, detailed: false %}{%- endif -%}
+                {%- if block.settings.img_2 != 'none' -%}{% render 'purelane-product-vector', type: block.settings.img_2, detailed: false %}{%- endif -%}
+                {%- if block.settings.img_3 != 'none' -%}{% render 'purelane-product-vector', type: block.settings.img_3, detailed: false %}{%- endif -%}
+                {%- if block.settings.img_4 != 'none' -%}{% render 'purelane-product-vector', type: block.settings.img_4, detailed: false %}{%- endif -%}
+                {%- if block.settings.img_5 != 'none' -%}{% render 'purelane-product-vector', type: block.settings.img_5, detailed: false %}{%- endif -%}
+              </div>
+
+              <!-- Quantity Info -->
+              <div class="qty">
+                {{ block.settings.qty }}
+                <small>{{ block.settings.qty_label }}</small>
+              </div>
+
+              <!-- Price Box -->
+              <div class="price">
+                {{ block.settings.price }}
+                {%- if block.settings.compare_price != blank -%}
+                  <s>{{ block.settings.compare_price }}</s>
+                {%- endif -%}
+              </div>
+
+              <!-- Subtitle per-product cost -->
+              {%- if block.settings.subtext != blank -%}
+                <p class="body-s" style="font-size:12px">{{ block.settings.subtext }}</p>
+              {%- endif -%}
+
+              <!-- Checkmarks Features List -->
+              <ul>
+                {%- if block.settings.bullet_1 != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m5 13 4 4L19 7"/>
+                    </svg>
+                    {{ block.settings.bullet_1 }}
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.bullet_2 != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m5 13 4 4L19 7"/>
+                    </svg>
+                    {{ block.settings.bullet_2 }}
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.bullet_3 != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m5 13 4 4L19 7"/>
+                    </svg>
+                    {{ block.settings.bullet_3 }}
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.bullet_4 != blank -%}
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m5 13 4 4L19 7"/>
+                    </svg>
+                    {{ block.settings.bullet_4 }}
+                  </li>
+                {%- endif -%}
+              </ul>
+
+              <!-- Action button -->
+              <a class="btn {% if block.settings.is_best %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ block.settings.btn_link | default: '#shop' }}">
+                {{ block.settings.btn_text }}
+                {%- if block.settings.is_best -%}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h13m-5-6 6 6-6 6"/>
+                  </svg>
+                {%- endif -%}
+              </a>
+
+            </article>
+
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Bundles",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "Build your bundle"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "One box. Every room."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Pricing Tier",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Ribbon text",
+          "default": "Starter"
+        },
+        {
+          "type": "text",
+          "id": "qty",
+          "label": "Quantity count",
+          "default": "3"
+        },
+        {
+          "type": "text",
+          "id": "qty_label",
+          "label": "Quantity label",
+          "default": "Products"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price Display",
+          "default": "₹499"
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Compare Price Display",
+          "default": "₹897"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Cost subtitle per unit",
+          "default": "Flat ₹166 per product"
+        },
+        {
+          "type": "text",
+          "id": "bullet_1",
+          "label": "Feature bullet 1",
+          "default": "Pick any three products"
+        },
+        {
+          "type": "text",
+          "id": "bullet_2",
+          "label": "Feature bullet 2",
+          "default": "Covers kitchen and laundry"
+        },
+        {
+          "type": "text",
+          "id": "bullet_3",
+          "label": "Feature bullet 3",
+          "default": "Free shipping across India"
+        },
+        {
+          "type": "text",
+          "id": "bullet_4",
+          "label": "Feature bullet 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_best",
+          "label": "Best Value (Highlight border & primary button)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Build this box"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Floating Product Vectors"
+        },
+        {
+          "type": "select",
+          "id": "img_1",
+          "label": "Float Image 1",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "combo2", "label": "Combo Pack Box" }
+          ],
+          "default": "kitchen"
+        },
+        {
+          "type": "select",
+          "id": "img_2",
+          "label": "Float Image 2",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "combo2", "label": "Combo Pack Box" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "img_3",
+          "label": "Float Image 3",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "combo2", "label": "Combo Pack Box" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "img_4",
+          "label": "Float Image 4",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "combo2", "label": "Combo Pack Box" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "img_5",
+          "label": "Float Image 5",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "combo2", "label": "Combo Pack Box" }
+          ],
+          "default": "none"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Bundles",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Starter",
+            "qty": "2",
+            "qty_label": "Products",
+            "price": "₹349",
+            "compare_price": "₹598",
+            "subtext": "Flat ₹174 per product",
+            "bullet_1": "Pick any two products",
+            "bullet_2": "Free shipping across India",
+            "is_best": false,
+            "img_1": "combo2"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Most popular",
+            "qty": "3",
+            "qty_label": "Products",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "subtext": "Flat ₹166 per product",
+            "bullet_1": "Pick any three products",
+            "bullet_2": "Covers kitchen and laundry",
+            "bullet_3": "Free shipping across India",
+            "is_best": true,
+            "img_1": "kitchen",
+            "img_2": "tap",
+            "img_3": "combo2"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Whole home",
+            "qty": "5",
+            "qty_label": "Products",
+            "price": "₹799",
+            "compare_price": "₹1,495",
+            "subtext": "Flat ₹160 per product",
+            "bullet_1": "Pick any five products",
+            "bullet_2": "Every room in one order",
+            "bullet_3": "Free shipping across India",
+            "is_best": false,
+            "img_1": "kitchen",
+            "img_2": "tap",
+            "img_3": "floor",
+            "img_4": "toilet",
+            "img_5": "laundry"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

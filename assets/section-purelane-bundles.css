@@ -1,0 +1,141 @@
+/* ---------- BUNDLES ---------- */
+.tiers {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+}
+@media (min-width: 760px) {
+  .tiers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tier {
+  padding: 24px 22px;
+  transition: 0.4s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.tier:hover {
+  transform: translateY(-5px);
+}
+.tier.best {
+  border-color: rgba(201, 118, 29, 0.46);
+  box-shadow: 0 22px 54px rgba(58, 44, 112, 0.14), 0 0 0 1px rgba(201, 118, 29, 0.24), var(--g-inset);
+}
+
+.tier .tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  background: rgba(201, 118, 29, 0.14);
+  border: 1px solid rgba(201, 118, 29, 0.34);
+  color: #4f7d10;
+}
+
+.tier .qty {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--surface);
+  letter-spacing: -0.03em;
+}
+.tier .qty small {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-3);
+  display: block;
+  margin-top: 6px;
+}
+
+.tier .price {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 27px;
+  color: var(--accent);
+  margin: 16px 0 4px;
+}
+.tier .price s {
+  font-size: 14px;
+  color: var(--paper-3);
+  font-weight: 500;
+  margin-left: 8px;
+  text-decoration: line-through;
+}
+
+.tier ul {
+  list-style: none;
+  margin: 16px 0 20px;
+  display: grid;
+  gap: 8px;
+}
+.tier li {
+  display: flex;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--paper-2);
+}
+.tier li svg {
+  width: 14px;
+  height: 14px;
+  color: #4f7d10;
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+.tier .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* ---------- TIER PRODUCT ROW ---------- */
+.tierpix {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 78px;
+  margin: -4px 0 16px;
+  padding: 8px 6px;
+  border-radius: 14px;
+  background: linear-gradient(162deg, rgba(255, 255, 255, 0.54), rgba(236, 230, 247, 0.34));
+  border: 1px solid rgba(75, 58, 143, 0.11);
+}
+.tierpix .pimg, 
+.tierpix .pimg-vector {
+  height: 62px;
+  width: auto;
+  filter: drop-shadow(0 5px 8px rgba(0,74,66,0.13));
+}
+.tierpix.five .pimg, 
+.tierpix.five .pimg-vector {
+  height: 54px;
+}
+
+@media (max-width: 760px) {
+  .tier .qty {
+    font-size: 44px;
+  }
+  .tierpix {
+    height: 70px;
+  }
+  .tierpix .pimg, 
+  .tierpix .pimg-vector {
+    height: 54px;
+  }
+  .tierpix.five .pimg, 
+  .tierpix.five .pimg-vector {
+    height: 46px;
+  }
+}
