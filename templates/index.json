@@ -1,42 +1,57 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "purelane_hero": {
+      "type": "purelane-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "badge_1": {
+          "type": "badge",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z\"/><path d=\"M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z\"/></svg>",
+            "text": "Plant<br>powered"
           }
         },
-        "button": {
-          "type": "buttons",
+        "badge_2": {
+          "type": "badge",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z\"/><path d=\"m9 12 2.2 2.2L15.4 10\"/></svg>",
+            "text": "Safe for<br>kids &amp; pets"
           }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"12\" cy=\"12\" r=\"8.4\"/><path d=\"M6.4 17.6 17.6 6.4\"/></svg>",
+            "text": "Zero harsh<br>chemicals"
+          }
+        },
+        "slide_1": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {}
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {}
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "slide_1",
+        "slide_2",
+        "slide_3"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "headline": "Clean<br>That<br><span class=\"lime\">Lasts</span>",
+        "description": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "btn1_text": "Shop now",
+        "btn1_link": "shopify://collections/all",
+        "btn2_text": "How it works",
+        "btn2_link": "#how"
       }
     },
     "featured_collection": {
@@ -69,7 +84,7 @@
     }
   },
   "order": [
-    "image_banner",
+    "purelane_hero",
     "featured_collection"
   ]
 }
