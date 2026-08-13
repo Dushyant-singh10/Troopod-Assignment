@@ -1,0 +1,585 @@
+{{ 'section-purelane-combos.css' | asset_url | stylesheet_tag }}
+
+<div class="purelane-section purelane-combos-section" id="combos" data-scene="3">
+  <section class="sec">
+    <div class="wrap">
+      
+      <!-- Panel Header -->
+      <div class="panel-head rv">
+        <span class="kicker">{{ section.settings.kicker }}</span>
+        <h2 class="d2" style="margin-top:12px">{{ section.settings.headline }}</h2>
+        <div class="rule">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/>
+            <path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+          </svg>
+          <i></i>
+        </div>
+        {%- if section.settings.description != blank -%}
+          <p class="lede" style="margin:14px auto 0">{{ section.settings.description }}</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Combo Rail Scroll Wrapper -->
+      <div class="comborail rv">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'combo' -%}
+            
+            {%- assign p1 = block.settings.product_1 -%}
+            {%- assign p2 = block.settings.product_2 -%}
+            {%- assign p3 = block.settings.product_3 -%}
+            {%- assign p4 = block.settings.product_4 -%}
+            {%- assign p5 = block.settings.product_5 -%}
+
+            <article class="glass combo{% if block.settings.is_hero_combo %} hero-combo{% endif %}" {{ block.shopify_attributes }}>
+              
+              <!-- Tray (top half with product stack) -->
+              <div class="tray">
+                {%- if block.settings.saving_text != blank -%}
+                  <span class="save">{{ block.settings.saving_text }}</span>
+                {%- endif -%}
+                
+                {%- if block.settings.flag_text != blank -%}
+                  <span class="flag">{{ block.settings.flag_text }}</span>
+                {%- endif -%}
+
+                <!-- Horizontal Stack -->
+                <div class="stack">
+                  <!-- Item 1 -->
+                  {%- if p1 != blank or block.settings.fallback_1 != 'none' -%}
+                    <span class="it">
+                      {%- if p1 != blank -%}
+                        <img class="pimg-real" src="{{ p1.featured_image | image_url: width: 140 }}" alt="{{ p1.title | escape }}" loading="lazy">
+                      {%- else -%}
+                        {%- if block.settings.fallback_1 == 'tile' -%}
+                          <span class="tile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+                            </svg>
+                          </span>
+                        {%- else -%}
+                          {% render 'purelane-product-vector', type: block.settings.fallback_1, detailed: false %}
+                        {%- endif -%}
+                      {%- endif -%}
+                      <span>{{ block.settings.caption_1 }}</span>
+                    </span>
+                  {%- endif -%}
+
+                  <!-- Item 2 -->
+                  {%- if p2 != blank or block.settings.fallback_2 != 'none' -%}
+                    <span class="plus" aria-hidden="true">+</span>
+                    <span class="it">
+                      {%- if p2 != blank -%}
+                        <img class="pimg-real" src="{{ p2.featured_image | image_url: width: 140 }}" alt="{{ p2.title | escape }}" loading="lazy">
+                      {%- else -%}
+                        {%- if block.settings.fallback_2 == 'tile' -%}
+                          <span class="tile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+                            </svg>
+                          </span>
+                        {%- else -%}
+                          {% render 'purelane-product-vector', type: block.settings.fallback_2, detailed: false %}
+                        {%- endif -%}
+                      {%- endif -%}
+                      <span>{{ block.settings.caption_2 }}</span>
+                    </span>
+                  {%- endif -%}
+
+                  <!-- Item 3 -->
+                  {%- if p3 != blank or block.settings.fallback_3 != 'none' -%}
+                    <span class="plus" aria-hidden="true">+</span>
+                    <span class="it">
+                      {%- if p3 != blank -%}
+                        <img class="pimg-real" src="{{ p3.featured_image | image_url: width: 140 }}" alt="{{ p3.title | escape }}" loading="lazy">
+                      {%- else -%}
+                        {%- if block.settings.fallback_3 == 'tile' -%}
+                          <span class="tile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+                            </svg>
+                          </span>
+                        {%- else -%}
+                          {% render 'purelane-product-vector', type: block.settings.fallback_3, detailed: false %}
+                        {%- endif -%}
+                      {%- endif -%}
+                      <span>{{ block.settings.caption_3 }}</span>
+                    </span>
+                  {%- endif -%}
+
+                  <!-- Item 4 -->
+                  {%- if p4 != blank or block.settings.fallback_4 != 'none' -%}
+                    <span class="plus" aria-hidden="true">+</span>
+                    <span class="it">
+                      {%- if p4 != blank -%}
+                        <img class="pimg-real" src="{{ p4.featured_image | image_url: width: 140 }}" alt="{{ p4.title | escape }}" loading="lazy">
+                      {%- else -%}
+                        {%- if block.settings.fallback_4 == 'tile' -%}
+                          <span class="tile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+                            </svg>
+                          </span>
+                        {%- else -%}
+                          {% render 'purelane-product-vector', type: block.settings.fallback_4, detailed: false %}
+                        {%- endif -%}
+                      {%- endif -%}
+                      <span>{{ block.settings.caption_4 }}</span>
+                    </span>
+                  {%- endif -%}
+
+                  <!-- Item 5 -->
+                  {%- if p5 != blank or block.settings.fallback_5 != 'none' -%}
+                    <span class="plus" aria-hidden="true">+</span>
+                    <span class="it">
+                      {%- if p5 != blank -%}
+                        <img class="pimg-real" src="{{ p5.featured_image | image_url: width: 140 }}" alt="{{ p5.title | escape }}" loading="lazy">
+                      {%- else -%}
+                        {%- if block.settings.fallback_5 == 'tile' -%}
+                          <span class="tile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/>
+                            </svg>
+                          </span>
+                        {%- else -%}
+                          {% render 'purelane-product-vector', type: block.settings.fallback_5, detailed: false %}
+                        {%- endif -%}
+                      {%- endif -%}
+                      <span>{{ block.settings.caption_5 }}</span>
+                    </span>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              <!-- Body (bottom half with description and prices) -->
+              <div class="body">
+                <h3>{{ block.settings.title }}</h3>
+                <div class="cnt">{{ block.settings.count_text }}</div>
+                <p class="inc">{{ block.settings.description }}</p>
+                
+                <div class="prow">
+                  {%- assign final_price = block.settings.custom_price -%}
+                  {%- if final_price == blank and p1 != blank -%}
+                    {%- assign price_calc = p1.price -%}
+                    {%- if p2 != blank -%}{%- assign price_calc = price_calc | plus: p2.price -%}{%- endif -%}
+                    {%- if p3 != blank -%}{%- assign price_calc = price_calc | plus: p3.price -%}{%- endif -%}
+                    {%- if p4 != blank -%}{%- assign price_calc = price_calc | plus: p4.price -%}{%- endif -%}
+                    {%- if p5 != blank -%}{%- assign price_calc = price_calc | plus: p5.price -%}{%- endif -%}
+                    {%- assign final_price = price_calc | money -%}
+                  {%- elsif final_price != blank -%}
+                    {%- assign final_price = final_price | times: 100 | money -%}
+                  {%- endif -%}
+
+                  {%- assign compare_price = block.settings.custom_compare_price -%}
+                  {%- if compare_price == blank and p1 != blank -%}
+                    {%- assign compare_calc = p1.compare_at_price | default: p1.price -%}
+                    {%- if p2 != blank -%}{%- assign compare_calc = compare_calc | plus: p2.compare_at_price | default: p2.price -%}{%- endif -%}
+                    {%- if p3 != blank -%}{%- assign compare_calc = compare_calc | plus: p3.compare_at_price | default: p3.price -%}{%- endif -%}
+                    {%- if p4 != blank -%}{%- assign compare_calc = compare_calc | plus: p4.compare_at_price | default: p4.price -%}{%- endif -%}
+                    {%- if p5 != blank -%}{%- assign compare_calc = compare_calc | plus: p5.compare_at_price | default: p5.price -%}{%- endif -%}
+                    {%- assign compare_price = compare_calc | money -%}
+                  {%- elsif compare_price != blank -%}
+                    {%- assign compare_price = compare_price | times: 100 | money -%}
+                  {%- endif -%}
+
+                  <strong>{{ final_price | default: block.settings.fallback_price_display }}</strong>
+                  {%- if compare_price != blank or block.settings.fallback_compare_display != blank -%}
+                    <s>{{ compare_price | default: block.settings.fallback_compare_display }}</s>
+                  {%- endif -%}
+                  {%- if block.settings.discount_tag != blank -%}
+                    <em>{{ block.settings.discount_tag }}</em>
+                  {%- endif -%}
+                </div>
+                
+                <div class="fine">{{ section.settings.fine_print }}</div>
+                <a class="btn {% if block.settings.is_hero_combo %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ block.settings.btn_link | default: '#bundles' }}">
+                  {{ section.settings.btn_text }}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h13m-5-6 6 6-6 6"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <!-- Swipe cue indicator -->
+      <div class="swipecue" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h13m-5-6 6 6-6 6"/>
+        </svg>
+        {{ section.settings.swipe_cue }}
+      </div>
+      
+      {%- if section.settings.note != blank -%}
+        <p class="railnote">{{ section.settings.note }}</p>
+      {%- endif -%}
+
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Combos",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "Pre-built to save you money"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Best selling combos"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Shop bundle"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine Print",
+      "default": "Inclusive of all taxes · COD available"
+    },
+    {
+      "type": "text",
+      "id": "swipe_cue",
+      "label": "Swipe Cue Label",
+      "default": "Swipe for more combos"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "note",
+      "label": "Footer Note",
+      "default": "Tapping \"Shop bundle\" opens the bundle picker with these products already added. You can still swap anything before you pay."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "combo",
+      "name": "Combo Pack",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Combo Title",
+          "default": "Combo Pack Name"
+        },
+        {
+          "type": "text",
+          "id": "count_text",
+          "label": "Count Subtitle",
+          "default": "3 products"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description / Includes",
+          "default": "Includes: foaming kitchen cleaner, dishwash gel, tap cleaner."
+        },
+        {
+          "type": "checkbox",
+          "id": "is_hero_combo",
+          "label": "Highlight Combo (Orange Border)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "saving_text",
+          "label": "Saving Badge",
+          "default": "You save ₹398"
+        },
+        {
+          "type": "text",
+          "id": "flag_text",
+          "label": "Flag Badge (Top Right)",
+          "default": "Most popular"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Prices Overrides"
+        },
+        {
+          "type": "number",
+          "id": "custom_price",
+          "label": "Custom Price (In Rupees)",
+          "info": "Overrides auto-calculated total"
+        },
+        {
+          "type": "number",
+          "id": "custom_compare_price",
+          "label": "Custom Compare At Price (In Rupees)",
+          "info": "Overrides auto-calculated total"
+        },
+        {
+          "type": "text",
+          "id": "discount_tag",
+          "label": "Discount Tag Override",
+          "default": "Save ₹398"
+        },
+        {
+          "type": "text",
+          "id": "fallback_price_display",
+          "label": "Fallback Price Display",
+          "default": "₹499",
+          "info": "Used when no products are selected"
+        },
+        {
+          "type": "text",
+          "id": "fallback_compare_display",
+          "label": "Fallback Compare Display",
+          "default": "₹897",
+          "info": "Used when no products are selected"
+        },
+        {
+          "type": "header",
+          "content": "Combo Item 1"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product"
+        },
+        {
+          "type": "select",
+          "id": "fallback_1",
+          "label": "Fallback Vector",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "tile", "label": "Placeholder Tile" }
+          ],
+          "default": "kitchen"
+        },
+        {
+          "type": "text",
+          "id": "caption_1",
+          "label": "Caption text",
+          "default": "Cuts grease instantly"
+        },
+        {
+          "type": "header",
+          "content": "Combo Item 2"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product"
+        },
+        {
+          "type": "select",
+          "id": "fallback_2",
+          "label": "Fallback Vector",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "tile", "label": "Placeholder Tile" }
+          ],
+          "default": "tap"
+        },
+        {
+          "type": "text",
+          "id": "caption_2",
+          "label": "Caption text",
+          "default": "Melts hard water stains"
+        },
+        {
+          "type": "header",
+          "content": "Combo Item 3"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product"
+        },
+        {
+          "type": "select",
+          "id": "fallback_3",
+          "label": "Fallback Vector",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "tile", "label": "Placeholder Tile" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "caption_3",
+          "label": "Caption text"
+        },
+        {
+          "type": "header",
+          "content": "Combo Item 4"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Product"
+        },
+        {
+          "type": "select",
+          "id": "fallback_4",
+          "label": "Fallback Vector",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "tile", "label": "Placeholder Tile" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "caption_4",
+          "label": "Caption text"
+        },
+        {
+          "type": "header",
+          "content": "Combo Item 5"
+        },
+        {
+          "type": "product",
+          "id": "product_5",
+          "label": "Product"
+        },
+        {
+          "type": "select",
+          "id": "fallback_5",
+          "label": "Fallback Vector",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kitchen", "label": "Kitchen Cleaner" },
+            { "value": "tap", "label": "Tap Cleaner" },
+            { "value": "metal", "label": "Metal Cleaner" },
+            { "value": "wm", "label": "Washing Machine Cleaner" },
+            { "value": "floor", "label": "Floor Cleaner" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "laundry", "label": "Laundry Detergent" },
+            { "value": "toilet", "label": "Toilet Cleaner" },
+            { "value": "tile", "label": "Placeholder Tile" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "caption_5",
+          "label": "Caption text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Combos",
+      "blocks": [
+        {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "count_text": "3 products",
+            "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel &amp; Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.",
+            "flag_text": "Most popular",
+            "saving_text": "You save ₹398",
+            "discount_tag": "Save ₹398",
+            "fallback_1": "kitchen",
+            "caption_1": "Cuts grease instantly",
+            "fallback_2": "tile",
+            "caption_2": "Squeaky clean dishes",
+            "fallback_3": "tap",
+            "caption_3": "Melts hard water stains"
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "count_text": "3 products",
+            "description": "Includes: Laundry Detergent, Fabric Conditioner &amp; Machine Cleaner Powder. Softer, fresher wash, all in one box.",
+            "flag_text": "",
+            "saving_text": "You save ₹448",
+            "discount_tag": "Save ₹448",
+            "fallback_price_display": "₹499",
+            "fallback_compare_display": "₹947",
+            "fallback_1": "laundry",
+            "caption_1": "Removes tough stains &amp; odour",
+            "fallback_2": "tile",
+            "caption_2": "Softens &amp; freshens every wash",
+            "fallback_3": "wm",
+            "caption_3": "Deep-cleans your machine"
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "count_text": "5 products",
+            "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner &amp; Handwash. Our biggest saving box.",
+            "flag_text": "Best value",
+            "saving_text": "Biggest saving",
+            "discount_tag": "Save ₹696",
+            "is_hero_combo": true,
+            "fallback_price_display": "₹799",
+            "fallback_compare_display": "₹1,495",
+            "fallback_1": "kitchen",
+            "caption_1": "Cuts grease instantly",
+            "fallback_2": "floor",
+            "caption_2": "Kills 99.9% germs",
+            "fallback_3": "handwash",
+            "caption_3": "Gentle hydration for hands"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

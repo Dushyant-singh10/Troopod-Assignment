@@ -62,10 +62,77 @@
         "limit": 8,
         "cart_btn_text": "Add to cart"
       }
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "combo_1": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "count_text": "3 products",
+            "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel &amp; Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.",
+            "flag_text": "Most popular",
+            "saving_text": "You save ₹398",
+            "discount_tag": "Save ₹398",
+            "fallback_1": "kitchen",
+            "caption_1": "Cuts grease instantly",
+            "fallback_2": "tile",
+            "caption_2": "Squeaky clean dishes",
+            "fallback_3": "tap",
+            "caption_3": "Melts hard water stains"
+          }
+        },
+        "combo_2": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "count_text": "3 products",
+            "description": "Includes: Laundry Detergent, Fabric Conditioner &amp; Machine Cleaner Powder. Softer, fresher wash, all in one box.",
+            "flag_text": "",
+            "saving_text": "You save ₹448",
+            "discount_tag": "Save ₹448",
+            "fallback_price_display": "₹499",
+            "fallback_compare_display": "₹947",
+            "fallback_1": "laundry",
+            "caption_1": "Removes tough stains &amp; odour",
+            "fallback_2": "tile",
+            "caption_2": "Softens &amp; freshens every wash",
+            "fallback_3": "wm",
+            "caption_3": "Deep-cleans your machine"
+          }
+        },
+        "combo_3": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "count_text": "5 products",
+            "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner &amp; Handwash. Our biggest saving box.",
+            "flag_text": "Best value",
+            "saving_text": "Biggest saving",
+            "discount_tag": "Save ₹696",
+            "is_hero_combo": true,
+            "fallback_price_display": "₹799",
+            "fallback_compare_display": "₹1,495",
+            "fallback_1": "kitchen",
+            "caption_1": "Cuts grease instantly",
+            "fallback_2": "floor",
+            "caption_2": "Kills 99.9% germs",
+            "fallback_3": "handwash",
+            "caption_3": "Gentle hydration for hands"
+          }
+        }
+      },
+      "block_order": [
+        "combo_1",
+        "combo_2",
+        "combo_3"
+      ]
     }
   },
   "order": [
     "purelane_hero",
-    "purelane_shop_grid"
+    "purelane_shop_grid",
+    "purelane_combos"
   ]
 }
