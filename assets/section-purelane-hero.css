@@ -203,8 +203,16 @@
   pointer-events: auto;
 }
 .hp {
-  object-fit: contain;
+  position: relative;
   width: auto;
+  flex: 0 0 auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  opacity: 0;
+  transform: translateY(28px) scale(0.94);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  filter: drop-shadow(0 26px 40px rgba(1, 22, 20, 0.66));
   max-width: 100%;
 }
 .hslide.on .hp {
