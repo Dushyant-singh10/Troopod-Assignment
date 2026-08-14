@@ -1,0 +1,127 @@
+{{ 'section-purelane-categories.css' | asset_url | stylesheet_tag }}
+
+<div class="purelane-section sec" id="categories-{{ section.id }}" data-scene="4">
+  <div class="wrap">
+    <div class="panel-head rv">
+      <span class="kicker">{{ section.settings.kicker }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.title }}</h2>
+    </div>
+    <div class="cats">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category' -%}
+          <a class="glass cat rv" href="{{ block.settings.link | default: '#combos' }}" {{ block.shopify_attributes }}>
+            <span class="ph">
+              <span class="pimg p-{{ block.settings.img_type }}" role="img" aria-label="Purelane {{ block.settings.title }}"></span>
+            </span>
+            <span class="txt">
+              <h4>{{ block.settings.title }}</h4>
+              <p>{{ block.settings.description }}</p>
+            </span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Categories",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "Bundle categories"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find the right bundle for you"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "img_type",
+          "label": "Vector Bottle Graphic",
+          "options": [
+            { "value": "kitchen", "label": "Kitchen (Green)" },
+            { "value": "toilet", "label": "Toilet (Indigo)" },
+            { "value": "laundry", "label": "Laundry (Blue)" },
+            { "value": "tap", "label": "Tap (Purple)" },
+            { "value": "floor", "label": "Floor (Violet)" },
+            { "value": "handwash", "label": "Handwash (Lilac)" },
+            { "value": "dish", "label": "Dishwash (Teal)" }
+          ],
+          "default": "kitchen"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Kitchen bundle"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Grease, dishes & more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Bundle Categories",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "img_type": "kitchen",
+            "title": "Kitchen bundle",
+            "description": "Grease, dishes & more"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "img_type": "toilet",
+            "title": "Bathroom bundle",
+            "description": "Deep clean & disinfect"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "img_type": "laundry",
+            "title": "Laundry bundle",
+            "description": "Softer, fresher wash"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "img_type": "tap",
+            "title": "Hard water bundle",
+            "description": "Melt away limescale"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

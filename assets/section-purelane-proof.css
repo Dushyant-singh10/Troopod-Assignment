@@ -1,0 +1,140 @@
+.proof {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .proof {
+    grid-template-columns: 1.05fr 0.62fr;
+    gap: 30px;
+  }
+}
+.proof-l .d2 {
+  margin-bottom: 14px;
+}
+.proof-l .btn {
+  margin-top: 22px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 22px 18px;
+}
+@media (min-width: 640px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.stat {
+  text-align: center;
+}
+.stat .ring {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 11px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid rgba(236, 230, 247, 0.3);
+  background: radial-gradient(circle at 34% 26%, rgba(236, 230, 247, 0.18), rgba(75, 58, 143, 0.22));
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--surface);
+  letter-spacing: -0.02em;
+}
+.stat h5 {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+.stat p {
+  font-size: 11.4px;
+  color: var(--paper-2);
+  line-height: 1.44;
+}
+
+/* Rotator panel */
+.rot {
+  position: relative;
+  padding: 18px 12px 16px;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.rot .frame {
+  position: relative;
+  width: 100%;
+  height: 206px;
+}
+.rot .frame .pimg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 196px;
+  opacity: 0;
+  transform: translate(-50%, -42%) scale(0.94);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  filter: drop-shadow(0 20px 28px rgba(1, 24, 22, 0.6));
+}
+.rot .frame .pimg.on {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.rot .cap {
+  margin-top: 12px;
+  text-align: center;
+  min-height: 32px;
+}
+.rot .cap b {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--surface);
+}
+.rot .cap span {
+  display: block;
+  font-size: 11px;
+  color: var(--paper-3);
+  margin-top: 3px;
+}
+.rot .dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.rot .dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(236, 230, 247, 0.26);
+  transition: 0.4s var(--ease);
+}
+.rot .dots i.on {
+  background: var(--accent);
+  width: 17px;
+  border-radius: 999px;
+}
+.proof-stats {
+  margin-top: 20px;
+}
+
+@media (max-width: 760px) {
+  .rot .frame {
+    height: 172px;
+  }
+  .rot .frame .pimg {
+    height: 164px;
+  }
+}

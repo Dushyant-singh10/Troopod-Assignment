@@ -1,0 +1,70 @@
+{{ 'section-purelane-signup.css' | asset_url | stylesheet_tag }}
+
+<div class="purelane-section sec" id="signup-{{ section.id }}" data-scene="4">
+  <div class="wrap">
+    <div class="glass signup rv">
+      <span class="kicker">{{ section.settings.kicker }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.title }}</h2>
+      <p class="lede" style="margin:0 auto">{{ section.settings.description }}</p>
+
+      {%- form 'customer', class: 'signup-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input 
+          type="email" 
+          name="contact[email]" 
+          placeholder="{{ section.settings.placeholder }}" 
+          aria-label="{{ section.settings.placeholder }}" 
+          required 
+          value="{% if customer %}{{ customer.email }}{% endif %}"
+        >
+        <button class="btn btn-primary" type="submit">{{ section.settings.btn_label }}</button>
+      {%- endform -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Newsletter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Subtitle",
+      "default": "Join the Purelane Club"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Get ₹100 off your first bundle"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Plus first access to new launches and restocks."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Get my ₹100 off"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Newsletter"
+    }
+  ]
+}
+{% endschema %}

@@ -54,14 +54,74 @@
         "btn2_link": "#how"
       }
     },
-    "purelane_shop_grid": {
-      "type": "purelane-shop-grid",
+    "purelane_reviews": {
+      "type": "purelane-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "author": "Anita",
+            "product_info": "Laundry detergent",
+            "title": "Works like a charm",
+            "text": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better."
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "author": "Priya",
+            "product_info": "Dishwash gel",
+            "title": "Best dishwash ever",
+            "text": "Tough on grease, but very gentle on hands. Doesn't leave dry hands at all. Will buy again."
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "author": "Sunita",
+            "product_info": "Liquid handwash",
+            "title": "Great packaging & product",
+            "text": "Beautiful minimal bottle. The handwash feels hydrating and does not dry the skin like commercial ones."
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "author": "Rohit S.",
+            "product_info": "Floor cleaner",
+            "title": "Dog friendly",
+            "text": "Really happy with the floor cleaner. Pet friendly, nice smell and natural. Very safe for children and pets."
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "author": "Verified buyer",
+            "product_info": "Tap cleaner",
+            "title": "Sparkling taps again",
+            "text": "Removed long-standing limescale on my taps in just one spray and wipe. Incredible results."
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5"
+      ]
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
       "settings": {
-        "kicker": "Bestsellers",
-        "headline": "Loved by 30,000 homes",
-        "limit": 8,
-        "cart_btn_text": "Add to cart"
+        "heading": "Sourced from nature"
       }
+    },
+    "purelane_pillars": {
+      "type": "purelane-pillars"
+    },
+    "purelane_proof": {
+      "type": "purelane-proof"
     },
     "purelane_combos": {
       "type": "purelane-combos",
@@ -77,7 +137,7 @@
             "discount_tag": "Save ₹398",
             "fallback_1": "kitchen",
             "caption_1": "Cuts grease instantly",
-            "fallback_2": "tile",
+            "fallback_2": "dish",
             "caption_2": "Squeaky clean dishes",
             "fallback_3": "tap",
             "caption_3": "Melts hard water stains"
@@ -162,7 +222,7 @@
             "is_best": true,
             "img_1": "kitchen",
             "img_2": "tap",
-            "img_3": "combo2"
+            "img_3": "dish"
           }
         },
         "tier_3": {
@@ -192,70 +252,44 @@
         "tier_3"
       ]
     },
-    "purelane_reviews": {
-      "type": "purelane-reviews",
-      "blocks": {
-        "review_1": {
-          "type": "review",
-          "settings": {
-            "author": "Anita",
-            "product_info": "Laundry detergent",
-            "title": "Works like a charm",
-            "text": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better."
-          }
-        },
-        "review_2": {
-          "type": "review",
-          "settings": {
-            "author": "Priya",
-            "product_info": "Dishwash gel",
-            "title": "Best dishwash ever",
-            "text": "Tough on grease, but very gentle on hands. Doesn't leave dry hands at all. Will buy again."
-          }
-        },
-        "review_3": {
-          "type": "review",
-          "settings": {
-            "author": "Sunita",
-            "product_info": "Liquid handwash",
-            "title": "Great packaging & product",
-            "text": "Beautiful minimal bottle. The handwash feels hydrating and does not dry the skin like commercial ones."
-          }
-        },
-        "review_4": {
-          "type": "review",
-          "settings": {
-            "author": "Rohit S.",
-            "product_info": "Floor cleaner",
-            "title": "Dog friendly",
-            "text": "Really happy with the floor cleaner. Pet friendly, nice smell and natural. Very safe for children and pets."
-          }
-        },
-        "review_5": {
-          "type": "review",
-          "settings": {
-            "author": "Verified buyer",
-            "product_info": "Tap cleaner",
-            "title": "Sparkling taps again",
-            "text": "Removed long-standing limescale on my taps in just one spray and wipe. Incredible results."
-          }
-        }
-      },
-      "block_order": [
-        "review_1",
-        "review_2",
-        "review_3",
-        "review_4",
-        "review_5"
-      ]
+    "purelane_shop_grid": {
+      "type": "purelane-shop-grid",
+      "settings": {
+        "kicker": "Bestsellers",
+        "headline": "Loved by 30,000 homes",
+        "limit": 8,
+        "cart_btn_text": "Add to cart"
+      }
+    },
+    "purelane_range": {
+      "type": "purelane-range"
+    },
+    "purelane_why_bundles": {
+      "type": "purelane-why-bundles"
+    },
+    "purelane_categories": {
+      "type": "purelane-categories"
+    },
+    "purelane_trust": {
+      "type": "purelane-trust"
+    },
+    "purelane_signup": {
+      "type": "purelane-signup"
     }
   },
   "order": [
     "purelane_hero",
-    "purelane_shop_grid",
+    "purelane_reviews",
+    "purelane_ingredients",
+    "purelane_pillars",
+    "purelane_proof",
     "purelane_combos",
     "purelane_bundles",
-    "purelane_reviews"
+    "purelane_shop_grid",
+    "purelane_range",
+    "purelane_why_bundles",
+    "purelane_categories",
+    "purelane_trust",
+    "purelane_signup"
   ]
 }
-
