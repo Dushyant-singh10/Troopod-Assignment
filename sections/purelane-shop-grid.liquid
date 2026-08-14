@@ -47,14 +47,16 @@
             {%- assign rating = product.metafields.reviews.rating.value.rating | default: "4.8" -%}
             {%- assign reviews_count = product.metafields.reviews.rating_count | default: 231 -%}
 
-            <article class="glass card rv{% if forloop.index > 1 %} rv-d{{ forloop.index0 | min: 4 }}{% endif %}">
+            {%- assign delay = forloop.index0 -%}
+            {%- if delay > 4 -%}{%- assign delay = 4 -%}{%- endif -%}
+            <article class="glass card rv{% if forloop.index > 1 %} rv-d{{ delay }}{% endif %}">
               <div class="shot">
                 {%- if badge != blank -%}
                   <span class="pill">{{ badge }}</span>
                 {%- endif -%}
                 
                 {%- if product.featured_image != blank -%}
-                  <img class="pimg-real" src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}" loading="lazy">
+                  <img class="pimg-real" src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}" loading="lazy" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}">
                 {%- else -%}
                   {% comment %} Handle dynamic vector illustrations if no photo {% endcomment %}
                   {%- assign p_handle = product.handle | downcase -%}

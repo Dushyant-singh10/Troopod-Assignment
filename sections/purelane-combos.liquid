@@ -50,7 +50,7 @@
                   {%- if p1 != blank or block.settings.fallback_1 != 'none' -%}
                     <span class="it">
                       {%- if p1 != blank -%}
-                        <img class="pimg-real" src="{{ p1.featured_image | image_url: width: 140 }}" alt="{{ p1.title | escape }}" loading="lazy">
+                        <img class="pimg-real" src="{{ p1.featured_image | image_url: width: 140 }}" alt="{{ p1.title | escape }}" loading="lazy" width="{{ p1.featured_image.width }}" height="{{ p1.featured_image.height }}">
                       {%- else -%}
                         {%- if block.settings.fallback_1 == 'tile' -%}
                           <span class="tile">
@@ -71,7 +71,7 @@
                     <span class="plus" aria-hidden="true">+</span>
                     <span class="it">
                       {%- if p2 != blank -%}
-                        <img class="pimg-real" src="{{ p2.featured_image | image_url: width: 140 }}" alt="{{ p2.title | escape }}" loading="lazy">
+                        <img class="pimg-real" src="{{ p2.featured_image | image_url: width: 140 }}" alt="{{ p2.title | escape }}" loading="lazy" width="{{ p2.featured_image.width }}" height="{{ p2.featured_image.height }}">
                       {%- else -%}
                         {%- if block.settings.fallback_2 == 'tile' -%}
                           <span class="tile">
@@ -92,7 +92,7 @@
                     <span class="plus" aria-hidden="true">+</span>
                     <span class="it">
                       {%- if p3 != blank -%}
-                        <img class="pimg-real" src="{{ p3.featured_image | image_url: width: 140 }}" alt="{{ p3.title | escape }}" loading="lazy">
+                        <img class="pimg-real" src="{{ p3.featured_image | image_url: width: 140 }}" alt="{{ p3.title | escape }}" loading="lazy" width="{{ p3.featured_image.width }}" height="{{ p3.featured_image.height }}">
                       {%- else -%}
                         {%- if block.settings.fallback_3 == 'tile' -%}
                           <span class="tile">
@@ -113,7 +113,7 @@
                     <span class="plus" aria-hidden="true">+</span>
                     <span class="it">
                       {%- if p4 != blank -%}
-                        <img class="pimg-real" src="{{ p4.featured_image | image_url: width: 140 }}" alt="{{ p4.title | escape }}" loading="lazy">
+                        <img class="pimg-real" src="{{ p4.featured_image | image_url: width: 140 }}" alt="{{ p4.title | escape }}" loading="lazy" width="{{ p4.featured_image.width }}" height="{{ p4.featured_image.height }}">
                       {%- else -%}
                         {%- if block.settings.fallback_4 == 'tile' -%}
                           <span class="tile">
@@ -134,7 +134,7 @@
                     <span class="plus" aria-hidden="true">+</span>
                     <span class="it">
                       {%- if p5 != blank -%}
-                        <img class="pimg-real" src="{{ p5.featured_image | image_url: width: 140 }}" alt="{{ p5.title | escape }}" loading="lazy">
+                        <img class="pimg-real" src="{{ p5.featured_image | image_url: width: 140 }}" alt="{{ p5.title | escape }}" loading="lazy" width="{{ p5.featured_image.width }}" height="{{ p5.featured_image.height }}">
                       {%- else -%}
                         {%- if block.settings.fallback_5 == 'tile' -%}
                           <span class="tile">

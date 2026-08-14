@@ -27,7 +27,9 @@
             {%- if block.settings.img_4 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
             {%- if block.settings.img_5 != 'none' -%}{%- assign pix_count = pix_count | plus: 1 -%}{%- endif -%}
 
-            <article class="glass tier rv{% if block.settings.is_best %} best{% endif %}{% if forloop.index > 1 %} rv-d{{ forloop.index0 | min: 4 }}{% endif %}" {{ block.shopify_attributes }}>
+            {%- assign delay = forloop.index0 -%}
+            {%- if delay > 4 -%}{%- assign delay = 4 -%}{%- endif -%}
+            <article class="glass tier rv{% if block.settings.is_best %} best{% endif %}{% if forloop.index > 1 %} rv-d{{ delay }}{% endif %}" {{ block.shopify_attributes }}>
               
               {%- if block.settings.tag != blank -%}
                 <span class="tag">{{ block.settings.tag }}</span>

@@ -90,14 +90,14 @@
                 {%- if p1 != blank -%}
                   <!-- Render Real Products -->
                   {%- if p3 != blank -%}
-                    <img class="hp a d1" src="{{ p1.featured_image | image_url: width: 340 }}" alt="{{ p1.title | escape }}" loading="lazy">
-                    <img class="hp b d2" src="{{ p2.featured_image | image_url: width: 340 }}" alt="{{ p2.title | escape }}" loading="lazy">
-                    <img class="hp c d3" src="{{ p3.featured_image | image_url: width: 340 }}" alt="{{ p3.title | escape }}" loading="lazy">
+                    <img class="hp a d1" src="{{ p1.featured_image | image_url: width: 340 }}" alt="{{ p1.title | escape }}" loading="lazy" width="{{ p1.featured_image.width }}" height="{{ p1.featured_image.height }}">
+                    <img class="hp b d2" src="{{ p2.featured_image | image_url: width: 340 }}" alt="{{ p2.title | escape }}" loading="lazy" width="{{ p2.featured_image.width }}" height="{{ p2.featured_image.height }}">
+                    <img class="hp c d3" src="{{ p3.featured_image | image_url: width: 340 }}" alt="{{ p3.title | escape }}" loading="lazy" width="{{ p3.featured_image.width }}" height="{{ p3.featured_image.height }}">
                   {%- elsif p2 != blank -%}
-                    <img class="hp a d1" src="{{ p1.featured_image | image_url: width: 380 }}" alt="{{ p1.title | escape }}" loading="lazy">
-                    <img class="hp b d2" src="{{ p2.featured_image | image_url: width: 380 }}" alt="{{ p2.title | escape }}" loading="lazy">
+                    <img class="hp a d1" src="{{ p1.featured_image | image_url: width: 380 }}" alt="{{ p1.title | escape }}" loading="lazy" width="{{ p1.featured_image.width }}" height="{{ p1.featured_image.height }}">
+                    <img class="hp b d2" src="{{ p2.featured_image | image_url: width: 380 }}" alt="{{ p2.title | escape }}" loading="lazy" width="{{ p2.featured_image.width }}" height="{{ p2.featured_image.height }}">
                   {%- else -%}
-                    <img class="hp a d1" src="{{ p1.featured_image | image_url: width: 440 }}" alt="{{ p1.title | escape }}" loading="lazy">
+                    <img class="hp a d1" src="{{ p1.featured_image | image_url: width: 440 }}" alt="{{ p1.title | escape }}" loading="lazy" width="{{ p1.featured_image.width }}" height="{{ p1.featured_image.height }}">
                   {%- endif -%}
                 {%- else -%}
                   <!-- Fallback Vector Drawings -->
